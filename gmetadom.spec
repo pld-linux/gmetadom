@@ -4,15 +4,15 @@
 Summary:	gdome2 binding for various programming languages
 Summary(pl):	Wi±zania gdome2 dla ró¿nych jêzyków programowania
 Name:		gmetadom
-Version:	0.1.6c
+Version:	0.1.8
 Release:	1
 License:	LGPL
 Group:		Libraries
-URL:		http://sourceforge.net/projects/%{name}/
+# Source0-md5:	2799db817f67c872af14ae9497aa202f
 Source0:	http://telia.dl.sourceforge.net/sourceforge/%{name}/%{name}-%{version}.tar.gz
-# Source0-md5:	d2d9d5e7bdd83780485080ba20dc39bf
+Patch0:		%{name}-assert.patch
+URL:		http://sourceforge.net/projects/%{name}/
 BuildRequires:	gdome2-devel
-Patch0:		%{name}-am.patch
 #BuildRequires:	ocaml >= 3.04-7
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -127,8 +127,8 @@ Pakiet ten zawiera statyczne bibilioteki niezbêdne do rozwijania
 programów korzystaj±cych z gdome2-cpp_smart.
 
 %prep
-%setup -q -n %{name}-0.1.6
-%patch -p1
+%setup -q
+%patch0 -p1
 find -name CVS | xargs rm -rf
 
 %build
@@ -155,7 +155,6 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc xml/DOM/* AUTHORS ChangeLog HISTORY LICENSE
-%dir %{_datadir}/gmetadom
 %dir %{_includedir}/gmetadom
 
 #%files -n ocaml-gdome2
@@ -179,11 +178,10 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -n gdome2-cpp_smart-devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_bindir}/gmetadom-config
 %{_libdir}/libgmetadom_gdome_cpp_smart.la
 %attr(755,root,root) %{_libdir}/libgmetadom_gdome_cpp_smart.so
 %{_includedir}/gmetadom/*
-%{_datadir}/gmetadom/gdome_cpp_smart.conf
+%{_pkgconfigdir}/gdome2-cpp-smart.pc
 
 %files -n gdome2-cpp_smart-static
 %defattr(644,root,root,755)
