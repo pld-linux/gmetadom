@@ -191,7 +191,7 @@ rm -rf $RPM_BUILD_ROOT
 %files -n gdome2-cpp_smart-devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/gmetadom-config
-%attr(755,root,root) %{_libdir}/libgmetadom_gdome_cpp_smart.la
+%{_libdir}/libgmetadom_gdome_cpp_smart.la
 %attr(755,root,root) %{_libdir}/libgmetadom_gdome_cpp_smart.so
 %{_includedir}/gmetadom/*
 %{_datadir}/gmetadom/gdome_cpp_smart.conf
