@@ -131,7 +131,7 @@ find -name CVS | xargs rm -rf
 rm -f missing
 %{__gettextize}
 %{__libtoolize}
-aclocal
+%{__aclocal}
 %{__autoconf}
 %{__automake}
 
