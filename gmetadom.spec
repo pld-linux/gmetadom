@@ -133,7 +133,7 @@ gettextize --copy --force
 libtoolize --copy --force
 aclocal
 %{__autoconf}
-automake -a -c
+%{__automake}
 
 %configure CXX=g++2
 
@@ -147,10 +147,18 @@ rm -rf $RPM_BUILD_ROOT
 (cd $RPM_BUILD_ROOT%{_libdir}/ocaml && ln -s gdome2/lib*.so .)
 
 install -d $RPM_BUILD_ROOT%{_examplesdir}/ocaml-gdome2-%{version}
-cp src/gdome_caml/examples/* $RPM_BUILD_ROOT%{_examplesdir}/ocaml-gdome2-%{version}
+cp src/gdome_caml/examples/* \
+	$RPM_BUILD_ROOT%{_examplesdir}/ocaml-gdome2-%{version}
 
 install -d $RPM_BUILD_ROOT%{_libdir}/ocaml/site-lib/gdome2
-mv $RPM_BUILD_ROOT%{_libdir}/ocaml/gdome2/META $RPM_BUILD_ROOT%{_libdir}/ocaml/site-lib/gdome2
+mv $RPM_BUILD_ROOT%{_libdir}/ocaml/gdome2/META \
+	$RPM_BUILD_ROOT%{_libdir}/ocaml/site-lib/gdome2
+echo 'directory = "+gdome2"' \
+	>> $RPM_BUILD_ROOT%{_libdir}/ocaml/site-lib/gdome2/META
+
+install -d $RPM_BUILD_ROOT%{_includedir}/caml
+mv $RPM_BUILD_ROOT%{_libdir}/ocaml/gdome2/*.h \
+	$RPM_BUILD_ROOT%{_includedir}/caml
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -174,6 +182,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/ocaml/gdome2/*.a
 %{_examplesdir}/ocaml-gdome2-%{version}
 %{_libdir}/ocaml/site-lib/gdome2
+%{_includedir}/caml/*
 
 %files -n gdome2-cpp_smart
 %defattr(644,root,root,755)
