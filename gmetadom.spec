@@ -10,6 +10,7 @@ License:	LGPL
 Group:		Libraries
 URL:		http://sourceforge.net/projects/%{name}/
 Source0:	http://telia.dl.sourceforge.net/sourceforge/%{name}/%{name}-%{version}.tar.gz
+# Source0-md5:	d2d9d5e7bdd83780485080ba20dc39bf
 BuildRequires:	gdome2-devel
 Patch0:		%{name}-am.patch
 #BuildRequires:	ocaml >= 3.04-7
