@@ -1,12 +1,13 @@
 #
-# TODO:
-# - build with ocaml
+# Conditional build:
+%bcond_without	ocaml	# don't build OCaml binding
+#
 Summary:	gdome2 binding for various programming languages
 Summary(pl):	Wi±zania gdome2 dla ró¿nych jêzyków programowania
 Name:		gmetadom
 Version:	0.2.2
 Release:	1
-License:	LGPL
+License:	LGPL v2.1+
 Group:		Libraries
 Source0:	http://dl.sourceforge.net/gmetadom/%{name}-%{version}.tar.gz
 # Source0-md5:	9fe1ee842bcbbe53ac013e9001c05c08
@@ -14,11 +15,11 @@ Patch0:		%{name}-assert.patch
 URL:		http://gmetadom.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	gdome2-devel
+BuildRequires:	gdome2-devel >= 0.8.0
 BuildRequires:	gettext-devel
 BuildRequires:	libtool
 BuildRequires:	libstdc++-devel
-#BuildRequires:	ocaml >= 3.04-7
+%{?with_ocaml:BuildRequires:	ocaml >= 3.04-7}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -33,6 +34,7 @@ lekk± i kompletn± implementacj± DOM poziom 2 opart± o libxml2.
 Summary:	gdome2 binding for OCaml
 Summary(pl):	Wi±zania gdome2 dla OCamla
 Group:		Libraries
+Requires:	gdome2 >= 0.8.0
 %requires_eq	ocaml-runtime
 
 %description -n ocaml-gdome2
@@ -75,6 +77,7 @@ tej biblioteki.
 Summary:	gdome2 binding for C++/smart pointers
 Summary(pl):	Wi±zania gdome2 dla C++/m±dre wska¼niki
 Group:		Libraries
+Requires:	gdome2 >= 0.8.0
 
 %description -n gdome2-cpp_smart
 gdome2 binding for C++ with smart pointers. gdome2 is a fast, light
@@ -91,6 +94,8 @@ Group:		Development/Libraries
 Requires:	libstdc++-devel
 Requires:	%{name} = %{version}-%{release}
 Requires:	gdome2-cpp_smart = %{version}-%{release}
+Requires:	gdome2-devel >= 0.8.0
+Requires:	libstdc++-devel
 
 %description -n gdome2-cpp_smart-devel
 gdome2 binding for C++ with smart pointers. gdome2 is a fast, light
@@ -139,7 +144,7 @@ glib-gettextize --copy --force
 %{__automake}
 
 %configure \
-	--with-modules=gdome_cpp_smart
+	--with-modules="gdome_cpp_smart%{?with_ocaml: gdome_caml}"
 
 %{__make}
 
@@ -149,35 +154,38 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
+install -d $RPM_BUILD_ROOT%{_examplesdir}/ocaml-gdome2-%{version}
+install src/gdome_caml/examples/*.ml $RPM_BUILD_ROOT%{_examplesdir}/ocaml-gdome2-%{version}
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%post	-p /sbin/ldconfig
-%postun	-p /sbin/ldconfig
+%post	-n gdome2-cpp_smart -p /sbin/ldconfig
+%postun	-n gdome2-cpp_smart -p /sbin/ldconfig
 
 %files
 %defattr(644,root,root,755)
 %doc xml/DOM/* AUTHORS ChangeLog HISTORY LICENSE
 %dir %{_includedir}/gmetadom
 
-#%files -n ocaml-gdome2
-#%defattr(644,root,root,755)
-#%dir %{_libdir}/ocaml/gdome2
-#%attr(755,root,root) %{_libdir}/ocaml/gdome2/libmlgdome.so*
-#%{_libdir}/ocaml/libmlgdome.so
+%if %{with ocaml}
+%files -n ocaml-gdome2
+%defattr(644,root,root,755)
+%dir %{_libdir}/ocaml/gdome2
+%attr(755,root,root) %{_libdir}/ocaml/stublibs/dllmlgdome.so
+%attr(755,root,root) %{_libdir}/ocaml/stublibs/libmlgdome.so
 
-#%files -n ocaml-gdome2-devel
-#%defattr(644,root,root,755)
-#%doc src/gdome_caml/ocaml/gdome.mli
-#%{_libdir}/ocaml/gdome2/*.cm[ixa]*
-#%{_libdir}/ocaml/gdome2/*.a
-#%{_examplesdir}/ocaml-gdome2-%{version}
-#%{_libdir}/ocaml/site-lib/gdome2
-#%{_includedir}/caml/*
+%files -n ocaml-gdome2-devel
+%defattr(644,root,root,755)
+%doc src/gdome_caml/ocaml/gdome.mli
+%{_libdir}/ocaml/gdome2/*.cm[ixao]*
+%{_libdir}/ocaml/gdome2/*.[hao]
+%{_examplesdir}/ocaml-gdome2-%{version}
+%endif
 
 %files -n gdome2-cpp_smart
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/libgmetadom_gdome_cpp_smart.so.*.*
+%attr(755,root,root) %{_libdir}/libgmetadom_gdome_cpp_smart.so.*.*.*
 
 %files -n gdome2-cpp_smart-devel
 %defattr(644,root,root,755)
