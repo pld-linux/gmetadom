@@ -1,6 +1,6 @@
 #
 # TODO:
-# - build with ocaml 
+# - build with ocaml
 Summary:	gdome2 binding for various programming languages
 Summary(pl):	Wi±zania gdome2 dla ró¿nych jêzyków programowania
 Name:		gmetadom
