@@ -8,8 +8,8 @@ Version:	0.1.8
 Release:	1
 License:	LGPL
 Group:		Libraries
+Source0:	http://dl.sourceforge.net/sourceforge/%{name}/%{name}-%{version}.tar.gz
 # Source0-md5:	2799db817f67c872af14ae9497aa202f
-Source0:	http://telia.dl.sourceforge.net/sourceforge/%{name}/%{name}-%{version}.tar.gz
 Patch0:		%{name}-assert.patch
 URL:		http://sourceforge.net/projects/%{name}/
 BuildRequires:	autoconf
