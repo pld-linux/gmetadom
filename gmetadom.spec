@@ -123,7 +123,7 @@ using gdome2-cpp_smart.
 Wi±zania gdome2 dla C++ z m±drymi wska¼nikami. gdome2 jest szybk±,
 lekk± i kompletn± implementacj± DOM poziom 2 opart± o libxml2.
 
-Pakiet ten zawiera statyczne bibilioteki niezbêdne do rozwijania
+Pakiet ten zawiera statyczne biblioteki niezbêdne do rozwijania
 programów korzystaj±cych z gdome2-cpp_smart.
 
 %prep
