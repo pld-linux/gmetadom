@@ -1,0 +1,11 @@
+diff -Nru gmetadom-0.1.8.orig/src/gdome_cpp_smart/test/main.cc gmetadom-0.1.8/src/gdome_cpp_smart/test/main.cc
+--- gmetadom-0.1.8.orig/src/gdome_cpp_smart/test/main.cc	2003-03-21 12:54:31.000000000 +0100
++++ gmetadom-0.1.8/src/gdome_cpp_smart/test/main.cc	2003-05-23 13:29:05.000000000 +0200
+@@ -23,6 +23,7 @@
+ 
+ #include <config.h>
+ 
++#include <assert.h>
+ #include <gdome.h>
+ #include <iostream>
+ 
