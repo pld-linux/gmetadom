@@ -1,20 +1,23 @@
+#
+# TODO:
+# - build with ocaml 
 Summary:	gdome2 binding for various programming languages
 Summary(pl):	Wi±zania gdome2 dla ró¿nych jêzyków programowania
 Name:		gmetadom
-Version:	0.0.3
+Version:	0.1.6c
 Release:	1
 License:	LGPL
 Group:		Libraries
 URL:		http://sourceforge.net/projects/%{name}/
 Source0:	http://telia.dl.sourceforge.net/sourceforge/%{name}/%{name}-%{version}.tar.gz
-Patch0:		%{name}-ac-am.patch
 BuildRequires:	gdome2-devel
-BuildRequires:	ocaml >= 3.04-7
+Patch0:		%{name}-am.patch
+#BuildRequires:	ocaml >= 3.04-7
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	libtool
 BuildRequires:	gettext-devel
-BuildRequires:	libstdc++2-devel
+BuildRequires:	libstdc++-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -123,19 +126,20 @@ Pakiet ten zawiera statyczne bibilioteki niezbêdne do rozwijania
 programów korzystaj±cych z gdome2-cpp_smart.
 
 %prep
-%setup -q
-%patch0 -p1
+%setup -q -n %{name}-0.1.6
+%patch -p1
 find -name CVS | xargs rm -rf
 
 %build
 rm -f missing
-%{__gettextize}
+glib-gettextize --copy --force
 %{__libtoolize}
 %{__aclocal}
 %{__autoconf}
 %{__automake}
 
-%configure CXX=g++2
+%configure \
+	--with-modules=gdome_cpp_smart
 
 %{__make}
 
@@ -143,22 +147,6 @@ rm -f missing
 rm -rf $RPM_BUILD_ROOT
 
 %{__make} install DESTDIR=$RPM_BUILD_ROOT
-
-(cd $RPM_BUILD_ROOT%{_libdir}/ocaml && ln -s gdome2/lib*.so .)
-
-install -d $RPM_BUILD_ROOT%{_examplesdir}/ocaml-gdome2-%{version}
-cp src/gdome_caml/examples/* \
-	$RPM_BUILD_ROOT%{_examplesdir}/ocaml-gdome2-%{version}
-
-install -d $RPM_BUILD_ROOT%{_libdir}/ocaml/site-lib/gdome2
-mv $RPM_BUILD_ROOT%{_libdir}/ocaml/gdome2/META \
-	$RPM_BUILD_ROOT%{_libdir}/ocaml/site-lib/gdome2
-echo 'directory = "+gdome2"' \
-	>> $RPM_BUILD_ROOT%{_libdir}/ocaml/site-lib/gdome2/META
-
-install -d $RPM_BUILD_ROOT%{_includedir}/caml
-mv $RPM_BUILD_ROOT%{_libdir}/ocaml/gdome2/*.h \
-	$RPM_BUILD_ROOT%{_includedir}/caml
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -169,20 +157,20 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_datadir}/gmetadom
 %dir %{_includedir}/gmetadom
 
-%files -n ocaml-gdome2
-%defattr(644,root,root,755)
-%dir %{_libdir}/ocaml/gdome2
-%attr(755,root,root) %{_libdir}/ocaml/gdome2/libmlgdome.so*
-%{_libdir}/ocaml/libmlgdome.so
+#%files -n ocaml-gdome2
+#%defattr(644,root,root,755)
+#%dir %{_libdir}/ocaml/gdome2
+#%attr(755,root,root) %{_libdir}/ocaml/gdome2/libmlgdome.so*
+#%{_libdir}/ocaml/libmlgdome.so
 
-%files -n ocaml-gdome2-devel
-%defattr(644,root,root,755)
-%doc src/gdome_caml/ocaml/gdome.mli
-%{_libdir}/ocaml/gdome2/*.cm[ixa]*
-%{_libdir}/ocaml/gdome2/*.a
-%{_examplesdir}/ocaml-gdome2-%{version}
-%{_libdir}/ocaml/site-lib/gdome2
-%{_includedir}/caml/*
+#%files -n ocaml-gdome2-devel
+#%defattr(644,root,root,755)
+#%doc src/gdome_caml/ocaml/gdome.mli
+#%{_libdir}/ocaml/gdome2/*.cm[ixa]*
+#%{_libdir}/ocaml/gdome2/*.a
+#%{_examplesdir}/ocaml-gdome2-%{version}
+#%{_libdir}/ocaml/site-lib/gdome2
+#%{_includedir}/caml/*
 
 %files -n gdome2-cpp_smart
 %defattr(644,root,root,755)
