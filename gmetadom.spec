@@ -12,13 +12,13 @@ Group:		Libraries
 Source0:	http://telia.dl.sourceforge.net/sourceforge/%{name}/%{name}-%{version}.tar.gz
 Patch0:		%{name}-assert.patch
 URL:		http://sourceforge.net/projects/%{name}/
-BuildRequires:	gdome2-devel
-#BuildRequires:	ocaml >= 3.04-7
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	libtool
+BuildRequires:	gdome2-devel
 BuildRequires:	gettext-devel
+BuildRequires:	libtool
 BuildRequires:	libstdc++-devel
+#BuildRequires:	ocaml >= 3.04-7
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -152,6 +152,9 @@ rm -rf $RPM_BUILD_ROOT
 %clean
 rm -rf $RPM_BUILD_ROOT
 
+%post	-p /sbin/ldconfig
+%postun	-p /sbin/ldconfig
+
 %files
 %defattr(644,root,root,755)
 %doc xml/DOM/* AUTHORS ChangeLog HISTORY LICENSE
@@ -174,13 +177,13 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -n gdome2-cpp_smart
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/libgmetadom_gdome_cpp_smart.so.*
+%attr(755,root,root) %{_libdir}/libgmetadom_gdome_cpp_smart.so.*.*
 
 %files -n gdome2-cpp_smart-devel
 %defattr(644,root,root,755)
-%{_libdir}/libgmetadom_gdome_cpp_smart.la
 %attr(755,root,root) %{_libdir}/libgmetadom_gdome_cpp_smart.so
-%{_includedir}/gmetadom/*
+%{_libdir}/libgmetadom_gdome_cpp_smart.la
+%{_includedir}/gmetadom
 %{_pkgconfigdir}/gdome2-cpp-smart.pc
 
 %files -n gdome2-cpp_smart-static
