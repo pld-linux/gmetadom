@@ -132,7 +132,7 @@ rm -f missing
 gettextize --copy --force
 libtoolize --copy --force
 aclocal
-autoconf
+%{__autoconf}
 automake -a -c
 
 %configure CXX=g++2
