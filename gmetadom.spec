@@ -8,10 +8,10 @@ Version:	0.2.2
 Release:	1
 License:	LGPL
 Group:		Libraries
-Source0:	http://dl.sourceforge.net/sourceforge/%{name}/%{name}-%{version}.tar.gz
+Source0:	http://dl.sourceforge.net/gmetadom/%{name}-%{version}.tar.gz
 # Source0-md5:	9fe1ee842bcbbe53ac013e9001c05c08
 Patch0:		%{name}-assert.patch
-URL:		http://sourceforge.net/projects/%{name}/
+URL:		http://gmetadom.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	gdome2-devel
@@ -132,7 +132,6 @@ programów korzystaj±cych z gdome2-cpp_smart.
 find -name CVS | xargs rm -rf
 
 %build
-rm -f missing
 glib-gettextize --copy --force
 %{__libtoolize}
 %{__aclocal}
@@ -147,7 +146,8 @@ glib-gettextize --copy --force
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%{__make} install DESTDIR=$RPM_BUILD_ROOT
+%{__make} install \
+	DESTDIR=$RPM_BUILD_ROOT
 
 %clean
 rm -rf $RPM_BUILD_ROOT
