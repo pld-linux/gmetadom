@@ -20,6 +20,7 @@ BuildRequires:	gettext-devel
 BuildRequires:	libtool
 BuildRequires:	libstdc++-devel
 %{?with_ocaml:BuildRequires:	ocaml >= 3.04-7}
+BuildRequires:	pkgconfig
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
