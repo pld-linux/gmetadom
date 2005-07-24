@@ -5,13 +5,12 @@
 Summary:	gdome2 binding for various programming languages
 Summary(pl):	Wi±zania gdome2 dla ró¿nych jêzyków programowania
 Name:		gmetadom
-Version:	0.2.2
-Release:	2
+Version:	0.2.3
+Release:	1
 License:	LGPL v2.1+
 Group:		Libraries
 Source0:	http://dl.sourceforge.net/gmetadom/%{name}-%{version}.tar.gz
-# Source0-md5:	9fe1ee842bcbbe53ac013e9001c05c08
-Patch0:		%{name}-assert.patch
+# Source0-md5:	da5f6f9f39a09aacbf9d3bb17804e787
 URL:		http://gmetadom.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -21,6 +20,7 @@ BuildRequires:	libtool
 BuildRequires:	libstdc++-devel
 %{?with_ocaml:BuildRequires:	ocaml >= 3.04-7}
 BuildRequires:	pkgconfig
+BuildRequires:	rpmbuild(macros) >= 1.198
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -134,11 +134,10 @@ programów korzystaj±cych z gdome2-cpp_smart.
 
 %prep
 %setup -q
-%patch0 -p1
 find -name CVS | xargs rm -rf
 
 %build
-glib-gettextize --copy --force
+%{__glib_gettextize}
 %{__libtoolize}
 %{__aclocal}
 %{__autoconf}
@@ -174,7 +173,6 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %dir %{_libdir}/ocaml/gdome2
 %attr(755,root,root) %{_libdir}/ocaml/stublibs/dllmlgdome.so
-%attr(755,root,root) %{_libdir}/ocaml/stublibs/libmlgdome.so
 
 %files -n ocaml-gdome2-devel
 %defattr(644,root,root,755)
