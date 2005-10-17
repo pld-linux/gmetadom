@@ -6,7 +6,7 @@ Summary:	gdome2 binding for various programming languages
 Summary(pl):	Wi±zania gdome2 dla ró¿nych jêzyków programowania
 Name:		gmetadom
 Version:	0.2.3
-Release:	1
+Release:	2
 License:	LGPL v2.1+
 Group:		Libraries
 Source0:	http://dl.sourceforge.net/gmetadom/%{name}-%{version}.tar.gz
