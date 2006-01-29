@@ -11,6 +11,7 @@ License:	LGPL v2.1+
 Group:		Libraries
 Source0:	http://dl.sourceforge.net/gmetadom/%{name}-%{version}.tar.gz
 # Source0-md5:	da5f6f9f39a09aacbf9d3bb17804e787
+Patch0:		%{name}-gcc4.patch
 URL:		http://gmetadom.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -134,6 +135,8 @@ programów korzystaj±cych z gdome2-cpp_smart.
 
 %prep
 %setup -q
+%patch0 -p1
+
 find -name CVS | xargs rm -rf
 
 %build
