@@ -2,11 +2,12 @@
 # Conditional build:
 %bcond_without	ocaml	# don't build OCaml binding
 #
+%define		ocaml_ver	3.09.1
 Summary:	gdome2 binding for various programming languages
 Summary(pl):	Wi±zania gdome2 dla ró¿nych jêzyków programowania
 Name:		gmetadom
 Version:	0.2.3
-Release:	3
+Release:	4
 License:	LGPL v2.1+
 Group:		Libraries
 Source0:	http://dl.sourceforge.net/gmetadom/%{name}-%{version}.tar.gz
@@ -17,9 +18,9 @@ BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	gdome2-devel >= 0.8.0
 BuildRequires:	gettext-devel
-BuildRequires:	libtool
 BuildRequires:	libstdc++-devel
-%{?with_ocaml:BuildRequires:	ocaml >= 3.04-7}
+BuildRequires:	libtool
+%{?with_ocaml:BuildRequires:	ocaml >= %{ocaml_ver}}
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.198
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -93,7 +94,6 @@ lekk± i kompletn± implementacj± DOM poziom 2 opart± o libxml2.
 Summary:	gdome2 binding for C++/smart pointers - development part
 Summary(pl):	Wi±zania gdome2 dla C++/m±dre wska¼niki - cze¶æ programistyczna
 Group:		Development/Libraries
-Requires:	libstdc++-devel
 Requires:	%{name} = %{version}-%{release}
 Requires:	gdome2-cpp_smart = %{version}-%{release}
 Requires:	gdome2-devel >= 0.8.0
@@ -149,7 +149,7 @@ find -name CVS | xargs rm -rf
 %configure \
 	--with-modules="gdome_cpp_smart%{?with_ocaml: gdome_caml}"
 
-%{__make}
+%{__make} -j1
 
 %install
 rm -rf $RPM_BUILD_ROOT
