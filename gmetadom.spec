@@ -2,12 +2,12 @@
 # Conditional build:
 %bcond_without	ocaml	# don't build OCaml binding
 #
-%define		ocaml_ver	3.09.1
+%define		ocaml_ver	1:3.09.1
 Summary:	gdome2 binding for various programming languages
 Summary(pl):	Wi±zania gdome2 dla ró¿nych jêzyków programowania
 Name:		gmetadom
 Version:	0.2.3
-Release:	4
+Release:	5
 License:	LGPL v2.1+
 Group:		Libraries
 Source0:	http://dl.sourceforge.net/gmetadom/%{name}-%{version}.tar.gz
