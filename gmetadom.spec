@@ -2,17 +2,16 @@
 # Conditional build:
 %bcond_without	ocaml	# don't build OCaml binding
 #
-%define		ocaml_ver	1:3.09.2
+%define		ocaml_ver	1:3.09.3
 Summary:	gdome2 binding for various programming languages
 Summary(pl):	Wi±zania gdome2 dla ró¿nych jêzyków programowania
 Name:		gmetadom
-Version:	0.2.3
-Release:	6
+Version:	0.2.4
+Release:	1
 License:	LGPL v2.1+
 Group:		Libraries
-Source0:	http://dl.sourceforge.net/gmetadom/%{name}-%{version}.tar.gz
-# Source0-md5:	da5f6f9f39a09aacbf9d3bb17804e787
-Patch0:		%{name}-gcc4.patch
+Source0:	http://dl.sourceforge.net/gmetadom/%{name}-%{version}b.tar.gz
+# Source0-md5:	bb0443a5ae4988e6b078431007fc6dcd
 URL:		http://gmetadom.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -135,7 +134,6 @@ programów korzystaj±cych z gdome2-cpp_smart.
 
 %prep
 %setup -q
-%patch0 -p1
 
 find -name CVS | xargs rm -rf
 
