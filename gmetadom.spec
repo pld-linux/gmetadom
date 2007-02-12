@@ -4,7 +4,7 @@
 #
 %define		ocaml_ver	1:3.09.3
 Summary:	gdome2 binding for various programming languages
-Summary(pl):	Wi±zania gdome2 dla ró¿nych jêzyków programowania
+Summary(pl.UTF-8):   WiÄ…zania gdome2 dla rÃ³Å¼nych jÄ™zykÃ³w programowania
 Name:		gmetadom
 Version:	0.2.4
 Release:	1
@@ -28,13 +28,13 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 gdome2 binding for various programming languages. gdome2 is a fast,
 light and complete DOM level2 implementation based on libxml2.
 
-%description -l pl
-Wi±zania gdome2 dla ró¿nych jêzyków programowania. gdome2 jest szybk±,
-lekk± i kompletn± implementacj± DOM poziom 2 opart± o libxml2.
+%description -l pl.UTF-8
+WiÄ…zania gdome2 dla rÃ³Å¼nych jÄ™zykÃ³w programowania. gdome2 jest szybkÄ…,
+lekkÄ… i kompletnÄ… implementacjÄ… DOM poziom 2 opartÄ… o libxml2.
 
 %package -n ocaml-gdome2
 Summary:	gdome2 binding for OCaml
-Summary(pl):	Wi±zania gdome2 dla OCamla
+Summary(pl.UTF-8):   WiÄ…zania gdome2 dla OCamla
 Group:		Libraries
 Requires:	gdome2 >= 0.8.0
 %requires_eq	ocaml-runtime
@@ -46,16 +46,16 @@ level2 implementation based on libxml2.
 This package contains files needed to run bytecode executables using
 this library.
 
-%description -n ocaml-gdome2 -l pl
-Wi±zania gdome2 dla OCamla. gdome2 jest szybk±, lekk± i kompletn±
-implementacj± DOM poziom 2 opart± o libxml2.
+%description -n ocaml-gdome2 -l pl.UTF-8
+WiÄ…zania gdome2 dla OCamla. gdome2 jest szybkÄ…, lekkÄ… i kompletnÄ…
+implementacjÄ… DOM poziom 2 opartÄ… o libxml2.
 
-Pakiet ten zawiera binaria potrzebne do uruchamiania programów
-u¿ywaj±cych tej biblioteki.
+Pakiet ten zawiera binaria potrzebne do uruchamiania programÃ³w
+uÅ¼ywajÄ…cych tej biblioteki.
 
 %package -n ocaml-gdome2-devel
 Summary:	gdome2 binding for OCaml - development part
-Summary(pl):	Wi±zania gdome2 dla OCamla - cze¶æ programistyczna
+Summary(pl.UTF-8):   WiÄ…zania gdome2 dla OCamla - czeÅ›Ä‡ programistyczna
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	ocaml-gdome2 = %{version}-%{release}
@@ -68,16 +68,16 @@ level2 implementation based on libxml2.
 This package contains files needed to develop OCaml programs using
 this library.
 
-%description -n ocaml-gdome2-devel -l pl
-Wi±zania gdome2 dla OCamla. gdome2 jest szybk±, lekk± i kompletn±
-implementacj± DOM poziom 2 opart± o libxml2.
+%description -n ocaml-gdome2-devel -l pl.UTF-8
+WiÄ…zania gdome2 dla OCamla. gdome2 jest szybkÄ…, lekkÄ… i kompletnÄ…
+implementacjÄ… DOM poziom 2 opartÄ… o libxml2.
 
-Pakiet ten zawiera pliki niezbêdne do tworzenia programów u¿ywaj±cych
+Pakiet ten zawiera pliki niezbÄ™dne do tworzenia programÃ³w uÅ¼ywajÄ…cych
 tej biblioteki.
 
 %package -n gdome2-cpp_smart
 Summary:	gdome2 binding for C++/smart pointers
-Summary(pl):	Wi±zania gdome2 dla C++/m±dre wska¼niki
+Summary(pl.UTF-8):   WiÄ…zania gdome2 dla C++/mÄ…dre wskaÅºniki
 Group:		Libraries
 Requires:	gdome2 >= 0.8.0
 
@@ -85,13 +85,13 @@ Requires:	gdome2 >= 0.8.0
 gdome2 binding for C++ with smart pointers. gdome2 is a fast, light
 and complete DOM level2 implementation based on libxml2.
 
-%description -n gdome2-cpp_smart -l pl
-Wi±zania gdome2 dla C++ z m±drymi wska¼nikami. gdome2 jest szybk±,
-lekk± i kompletn± implementacj± DOM poziom 2 opart± o libxml2.
+%description -n gdome2-cpp_smart -l pl.UTF-8
+WiÄ…zania gdome2 dla C++ z mÄ…drymi wskaÅºnikami. gdome2 jest szybkÄ…,
+lekkÄ… i kompletnÄ… implementacjÄ… DOM poziom 2 opartÄ… o libxml2.
 
 %package -n gdome2-cpp_smart-devel
 Summary:	gdome2 binding for C++/smart pointers - development part
-Summary(pl):	Wi±zania gdome2 dla C++/m±dre wska¼niki - cze¶æ programistyczna
+Summary(pl.UTF-8):   WiÄ…zania gdome2 dla C++/mÄ…dre wskaÅºniki - czeÅ›Ä‡ programistyczna
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	gdome2-cpp_smart = %{version}-%{release}
@@ -105,16 +105,16 @@ and complete DOM level2 implementation based on libxml2.
 This package contains header files needed to develop programs using
 gdome2-cpp_smart.
 
-%description -n gdome2-cpp_smart-devel -l pl
-Wi±zania gdome2 dla C++ z m±drymi wska¼nikami. gdome2 jest szybk±,
-lekk± i kompletn± implementacj± DOM poziom 2 opart± o libxml2.
+%description -n gdome2-cpp_smart-devel -l pl.UTF-8
+WiÄ…zania gdome2 dla C++ z mÄ…drymi wskaÅºnikami. gdome2 jest szybkÄ…,
+lekkÄ… i kompletnÄ… implementacjÄ… DOM poziom 2 opartÄ… o libxml2.
 
-Pakiet ten zawiera pliki nag³ówkowe niezbêdne do rozwijania programów
-korzystaj±cych z gdome2-cpp_smart.
+Pakiet ten zawiera pliki nagÅ‚Ã³wkowe niezbÄ™dne do rozwijania programÃ³w
+korzystajÄ…cych z gdome2-cpp_smart.
 
 %package -n gdome2-cpp_smart-static
 Summary:	gdome2 binding for C++/smart pointers - static libraries
-Summary(pl):	Wi±zania gdome2 dla C++/m±dre wska¼niki - biblioteki statyczne
+Summary(pl.UTF-8):   WiÄ…zania gdome2 dla C++/mÄ…dre wskaÅºniki - biblioteki statyczne
 Group:		Development/Libraries
 Requires:	gdome2-cpp_smart-devel = %{version}-%{release}
 
@@ -125,12 +125,12 @@ and complete DOM level2 implementation based on libxml2.
 This package contains static libraries needed to develop programs
 using gdome2-cpp_smart.
 
-%description -n gdome2-cpp_smart-static -l pl
-Wi±zania gdome2 dla C++ z m±drymi wska¼nikami. gdome2 jest szybk±,
-lekk± i kompletn± implementacj± DOM poziom 2 opart± o libxml2.
+%description -n gdome2-cpp_smart-static -l pl.UTF-8
+WiÄ…zania gdome2 dla C++ z mÄ…drymi wskaÅºnikami. gdome2 jest szybkÄ…,
+lekkÄ… i kompletnÄ… implementacjÄ… DOM poziom 2 opartÄ… o libxml2.
 
-Pakiet ten zawiera statyczne biblioteki niezbêdne do rozwijania
-programów korzystaj±cych z gdome2-cpp_smart.
+Pakiet ten zawiera statyczne biblioteki niezbÄ™dne do rozwijania
+programÃ³w korzystajÄ…cych z gdome2-cpp_smart.
 
 %prep
 %setup -q
