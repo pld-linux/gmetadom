@@ -4,7 +4,7 @@
 #
 %define		ocaml_ver	1:3.09.3
 Summary:	gdome2 binding for various programming languages
-Summary(pl.UTF-8):   Wiązania gdome2 dla różnych języków programowania
+Summary(pl.UTF-8):	Wiązania gdome2 dla różnych języków programowania
 Name:		gmetadom
 Version:	0.2.4
 Release:	1
@@ -34,7 +34,7 @@ lekką i kompletną implementacją DOM poziom 2 opartą o libxml2.
 
 %package -n ocaml-gdome2
 Summary:	gdome2 binding for OCaml
-Summary(pl.UTF-8):   Wiązania gdome2 dla OCamla
+Summary(pl.UTF-8):	Wiązania gdome2 dla OCamla
 Group:		Libraries
 Requires:	gdome2 >= 0.8.0
 %requires_eq	ocaml-runtime
@@ -55,7 +55,7 @@ używających tej biblioteki.
 
 %package -n ocaml-gdome2-devel
 Summary:	gdome2 binding for OCaml - development part
-Summary(pl.UTF-8):   Wiązania gdome2 dla OCamla - cześć programistyczna
+Summary(pl.UTF-8):	Wiązania gdome2 dla OCamla - cześć programistyczna
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	ocaml-gdome2 = %{version}-%{release}
@@ -77,7 +77,7 @@ tej biblioteki.
 
 %package -n gdome2-cpp_smart
 Summary:	gdome2 binding for C++/smart pointers
-Summary(pl.UTF-8):   Wiązania gdome2 dla C++/mądre wskaźniki
+Summary(pl.UTF-8):	Wiązania gdome2 dla C++/mądre wskaźniki
 Group:		Libraries
 Requires:	gdome2 >= 0.8.0
 
@@ -91,7 +91,7 @@ lekką i kompletną implementacją DOM poziom 2 opartą o libxml2.
 
 %package -n gdome2-cpp_smart-devel
 Summary:	gdome2 binding for C++/smart pointers - development part
-Summary(pl.UTF-8):   Wiązania gdome2 dla C++/mądre wskaźniki - cześć programistyczna
+Summary(pl.UTF-8):	Wiązania gdome2 dla C++/mądre wskaźniki - cześć programistyczna
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	gdome2-cpp_smart = %{version}-%{release}
@@ -114,7 +114,7 @@ korzystających z gdome2-cpp_smart.
 
 %package -n gdome2-cpp_smart-static
 Summary:	gdome2 binding for C++/smart pointers - static libraries
-Summary(pl.UTF-8):   Wiązania gdome2 dla C++/mądre wskaźniki - biblioteki statyczne
+Summary(pl.UTF-8):	Wiązania gdome2 dla C++/mądre wskaźniki - biblioteki statyczne
 Group:		Development/Libraries
 Requires:	gdome2-cpp_smart-devel = %{version}-%{release}
 
