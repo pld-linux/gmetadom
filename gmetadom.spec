@@ -6,19 +6,18 @@
 Summary:	gdome2 binding for various programming languages
 Summary(pl.UTF-8):	Wiązania gdome2 dla różnych języków programowania
 Name:		gmetadom
-Version:	0.2.4
-Release:	3
+Version:	0.2.6
+Release:	1
 License:	LGPL v2.1+
 Group:		Libraries
-Source0:	http://dl.sourceforge.net/gmetadom/%{name}-%{version}b.tar.gz
-# Source0-md5:	bb0443a5ae4988e6b078431007fc6dcd
+Source0:	http://dl.sourceforge.net/gmetadom/%{name}-%{version}.tar.gz
+# Source0-md5:	7bfb5d9c6f20ffa5e790b63d1f8cb481
 URL:		http://gmetadom.sourceforge.net/
-BuildRequires:	autoconf
+BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake
 BuildRequires:	gdome2-devel >= 0.8.0
-BuildRequires:	gettext-devel
 BuildRequires:	libstdc++-devel
-BuildRequires:	libtool
+BuildRequires:	libtool >= 2:1.5
 %{?with_ocaml:BuildRequires:	ocaml >= %{ocaml_ver}}
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.198
@@ -135,10 +134,10 @@ programów korzystających z gdome2-cpp_smart.
 %prep
 %setup -q
 
+# clean up CVS dirs in xml tree
 find -name CVS | xargs rm -rf
 
 %build
-%{__glib_gettextize}
 %{__libtoolize}
 %{__aclocal}
 %{__autoconf}
@@ -157,6 +156,8 @@ rm -rf $RPM_BUILD_ROOT
 
 install -d $RPM_BUILD_ROOT%{_examplesdir}/ocaml-gdome2-%{version}
 install src/gdome_caml/examples/*.ml $RPM_BUILD_ROOT%{_examplesdir}/ocaml-gdome2-%{version}
+
+rm $RPM_BUILD_ROOT%{_libdir}/ocaml/gdome2/*.{ml,mli}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -186,6 +187,7 @@ rm -rf $RPM_BUILD_ROOT
 %files -n gdome2-cpp_smart
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libgmetadom_gdome_cpp_smart.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libgmetadom_gdome_cpp_smart.so.0
 
 %files -n gdome2-cpp_smart-devel
 %defattr(644,root,root,755)
