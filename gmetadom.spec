@@ -157,7 +157,9 @@ rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_examplesdir}/ocaml-gdome2-%{version}
 install src/gdome_caml/examples/*.ml $RPM_BUILD_ROOT%{_examplesdir}/ocaml-gdome2-%{version}
 
+%if %{with ocaml}
 rm $RPM_BUILD_ROOT%{_libdir}/ocaml/gdome2/*.{ml,mli}
+%endif
 
 %clean
 rm -rf $RPM_BUILD_ROOT
