@@ -7,11 +7,12 @@ Summary:	gdome2 binding for various programming languages
 Summary(pl.UTF-8):	Wiązania gdome2 dla różnych języków programowania
 Name:		gmetadom
 Version:	0.2.6
-Release:	2
+Release:	3
 License:	LGPL v2.1+
 Group:		Libraries
 Source0:	http://dl.sourceforge.net/gmetadom/%{name}-%{version}.tar.gz
 # Source0-md5:	7bfb5d9c6f20ffa5e790b63d1f8cb481
+Patch0:		%{name}-gcc43.patch
 URL:		http://gmetadom.sourceforge.net/
 BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake
@@ -133,6 +134,7 @@ programów korzystających z gdome2-cpp_smart.
 
 %prep
 %setup -q
+%patch0 -p1
 
 # clean up CVS dirs in xml tree
 find -name CVS | xargs rm -rf
