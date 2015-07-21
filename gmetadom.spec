@@ -1,16 +1,21 @@
 #
 # Conditional build:
-%bcond_without	ocaml	# don't build OCaml binding
+%bcond_without	ocaml		# don't build OCaml binding
+%bcond_without	ocaml_opt	# skip building native optimized binaries
 #
+%ifnarch %{ix86} %{x8664} arm aarch64 ppc sparc sparcv9
+%undefine	with_ocaml_opt
+%endif
+
 %define		ocaml_ver	1:3.09.3
 Summary:	gdome2 binding for various programming languages
 Summary(pl.UTF-8):	Wiązania gdome2 dla różnych języków programowania
 Name:		gmetadom
 Version:	0.2.6
-Release:	7
+Release:	8
 License:	LGPL v2.1+
 Group:		Libraries
-Source0:	http://dl.sourceforge.net/gmetadom/%{name}-%{version}.tar.gz
+Source0:	http://downloads.sourceforge.net/gmetadom/%{name}-%{version}.tar.gz
 # Source0-md5:	7bfb5d9c6f20ffa5e790b63d1f8cb481
 Patch0:		%{name}-gcc43.patch
 URL:		http://gmetadom.sourceforge.net/
@@ -160,7 +165,13 @@ install -d $RPM_BUILD_ROOT%{_examplesdir}/ocaml-gdome2-%{version}
 install src/gdome_caml/examples/*.ml $RPM_BUILD_ROOT%{_examplesdir}/ocaml-gdome2-%{version}
 
 %if %{with ocaml}
-rm $RPM_BUILD_ROOT%{_libdir}/ocaml/gdome2/*.{ml,mli}
+# .mli packaged as %doc
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/ocaml/gdome2/*.{ml,mli}
+# findlib-specific file, useless with rpm
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/ocaml/stublibs/dllmlgdome.so.owner
+# unify location
+install -d $RPM_BUILD_ROOT%{_libdir}/ocaml/site-lib/gdome2
+%{__mv} $RPM_BUILD_ROOT%{_libdir}/ocaml/gdome2/META $RPM_BUILD_ROOT%{_libdir}/ocaml/site-lib/gdome2
 %endif
 
 %clean
@@ -183,8 +194,21 @@ rm -rf $RPM_BUILD_ROOT
 %files -n ocaml-gdome2-devel
 %defattr(644,root,root,755)
 %doc src/gdome_caml/ocaml/gdome.mli
-%{_libdir}/ocaml/gdome2/*.cm[ixao]*
-%{_libdir}/ocaml/gdome2/*.[hao]
+%{_libdir}/ocaml/gdome2/*.cmi
+%{_libdir}/ocaml/gdome2/gdomeInit.cmo
+%{_libdir}/ocaml/gdome2/mlgdomevalue.h
+%{_libdir}/ocaml/gdome2/mlgdome.cma
+%{_libdir}/ocaml/gdome2/mlogdome.cma
+%if %{with ocaml_opt}
+%{_libdir}/ocaml/gdome2/gdomeInit.cmx
+%{_libdir}/ocaml/gdome2/gdomeInit.o
+%{_libdir}/ocaml/gdome2/mlgdome.a
+%{_libdir}/ocaml/gdome2/mlgdome.cmxa
+%{_libdir}/ocaml/gdome2/mlogdome.a
+%{_libdir}/ocaml/gdome2/mlogdome.cmxa
+%endif
+%{_libdir}/ocaml/gdome2/libmlgdome.a
+%{_libdir}/ocaml/site-lib/gdome2
 %{_examplesdir}/ocaml-gdome2-%{version}
 %endif
 
