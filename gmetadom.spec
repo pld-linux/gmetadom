@@ -169,9 +169,6 @@ install src/gdome_caml/examples/*.ml $RPM_BUILD_ROOT%{_examplesdir}/ocaml-gdome2
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/ocaml/gdome2/*.{ml,mli}
 # findlib-specific file, useless with rpm
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/ocaml/stublibs/dllmlgdome.so.owner
-# unify location
-install -d $RPM_BUILD_ROOT%{_libdir}/ocaml/site-lib/gdome2
-%{__mv} $RPM_BUILD_ROOT%{_libdir}/ocaml/gdome2/META $RPM_BUILD_ROOT%{_libdir}/ocaml/site-lib/gdome2
 %endif
 
 %clean
@@ -194,6 +191,7 @@ rm -rf $RPM_BUILD_ROOT
 %files -n ocaml-gdome2-devel
 %defattr(644,root,root,755)
 %doc src/gdome_caml/ocaml/gdome.mli
+%{_libdir}/ocaml/gdome2/META
 %{_libdir}/ocaml/gdome2/*.cmi
 %{_libdir}/ocaml/gdome2/gdomeInit.cmo
 %{_libdir}/ocaml/gdome2/mlgdomevalue.h
@@ -208,7 +206,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/ocaml/gdome2/mlogdome.cmxa
 %endif
 %{_libdir}/ocaml/gdome2/libmlgdome.a
-%{_libdir}/ocaml/site-lib/gdome2
 %{_examplesdir}/ocaml-gdome2-%{version}
 %endif
 
