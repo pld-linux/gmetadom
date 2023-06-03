@@ -1,9 +1,9 @@
 #
 # Conditional build:
-%bcond_without	ocaml		# don't build OCaml binding
-%bcond_without	ocaml_opt	# skip building native optimized binaries
+%bcond_without	ocaml		# OCaml binding
+%bcond_without	ocaml_opt	# native optimized binaries
 #
-%ifnarch %{ix86} %{x8664} arm aarch64 ppc sparc sparcv9
+%ifnarch %{ix86} %{x8664} %{arm} aarch64 ppc sparc sparcv9
 %undefine	with_ocaml_opt
 %endif
 
@@ -12,7 +12,7 @@ Summary:	gdome2 binding for various programming languages
 Summary(pl.UTF-8):	Wiązania gdome2 dla różnych języków programowania
 Name:		gmetadom
 Version:	0.2.6
-Release:	14
+Release:	15
 License:	LGPL v2.1+
 Group:		Libraries
 Source0:	http://downloads.sourceforge.net/gmetadom/%{name}-%{version}.tar.gz
@@ -164,6 +164,9 @@ rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_examplesdir}/ocaml-gdome2-%{version}
 install src/gdome_caml/examples/*.ml $RPM_BUILD_ROOT%{_examplesdir}/ocaml-gdome2-%{version}
 
+# obsoleted by pkg-config
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/libgmetadom_gdome_cpp_smart.la
+
 %if %{with ocaml}
 # .mli packaged as %doc
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/ocaml/gdome2/*.{ml,mli}
@@ -217,7 +220,6 @@ rm -rf $RPM_BUILD_ROOT
 %files -n gdome2-cpp_smart-devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libgmetadom_gdome_cpp_smart.so
-%{_libdir}/libgmetadom_gdome_cpp_smart.la
 %{_includedir}/gmetadom
 %{_pkgconfigdir}/gdome2-cpp-smart.pc
 
