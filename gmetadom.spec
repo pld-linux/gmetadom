@@ -139,7 +139,7 @@ programów korzystających z gdome2-cpp_smart.
 
 %prep
 %setup -q
-%patch0 -p1
+%patch -P0 -p1
 
 # clean up CVS dirs in xml tree
 find -name CVS | xargs rm -rf
